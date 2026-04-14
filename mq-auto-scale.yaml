@@ -1,0 +1,73 @@
+---
+##### 日志配置 #####
+# 日志等级: debug,info,warn,error
+log_level: debug
+# 日志输出格式: json,text
+log_format: text
+# 是否输出日志源文件:
+log_add_source: false
+# 是否输出日志到控制台
+log_enable_console: true
+# 日志文件切割大小(兆[M])
+log_max_size: 10
+# 日志文件保存个数
+log_max_backups: 5
+# 日志保存天数
+log_max_age: 7
+
+##### MQ 配置 #####
+mq_host: 192.168.165.88
+mq_port: 15672
+mq_user: admin
+mq_pass: 123456
+mq_vhost: mq-auto-scale
+
+##### Node Monitor 配置 #####
+# 检查间隔
+node_check_interval: 3s
+# 需要连续满足条件的次数
+node_consecutive_checks: 3
+# 每核心最大负载阈值
+node_max_load_per_core: 4.0
+# 最大允许 CPU 使用率 (%)
+node_max_cpu_usage_percent: 80.0
+# 最大允许内存使用率 (%)
+node_max_memory_usage_percent: 80.0
+
+##### Supervisor 配置 #####
+supervisor_url: http://127.0.0.1:9001/RPC2
+supervisor_user: admin
+supervisor_pass: 123456
+supervisor_timeout: 120s
+supervisor_op_timeout: 120s
+supervisor_min_process: 1
+supervisor_max_process: 8
+supervisor_config_path: /etc/supervisord.d/
+
+##### 调度器配置 #####
+# 调度轮询间隔时间
+schedule_interval: 5s
+# [扩容]触发调度器扩容的消息数量阈值(消息积压超过100000触发扩容)
+schedule_scaleupconfig_scale_threshold: 10000
+# [扩容]消费者利用率超过90%
+schedule_scaleupconfig_consumer_utilisation_threshold: 0.9
+# [扩容]每次增加2个进程
+schedule_scaleupconfig_scale_up_step: 2
+# [扩容]每次减少2个进程
+schedule_scaleupconfig_scale_down_step: 2
+# [缩容] 触发调度器缩容的消息数量阈值(消息积压超过100触发缩容)
+schedule_scaledownconfig_scale_threshold: 100
+# [缩容] 消费者利用率低于20%
+schedule_scaledownconfig_consumer_utilisation_threshold: 0.2
+# [缩容] 每次增加2个进程
+schedule_scaledownconfig_scale_up_step: 2
+# [缩容] 每次减少2个进程
+schedule_scaledownconfig_scale_down_step: 2
+# 扩容冷却2分钟
+schedule_scale_up_cooldown: 2m
+# 缩容冷却5分钟
+schedule_scale_down_cooldown: 5m
+# 调度器队列与配置程序名配对
+schedule_queue_program:
+  # mq中的队列名 : 进程名称(配置的进程名,参考.ini配置文件)
+  ama.message.pull: consumer
