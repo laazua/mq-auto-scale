@@ -153,7 +153,7 @@ func (c *SupervisorManage) loadAllPrograms() error {
 		c.programs[programConfig.ProgramName] = programConfig
 
 		slog.Info("[supervisor] 加载进程配置", "进程名", programConfig.ProgramName, "配置文件", file,
-			"当前进程数量", programConfig.CurrentCount, "最少进程数量", programConfig.MinCount, "最多进程数量", programConfig.MaxCount)
+			"当前进程数量", programConfig.CurrentCount)
 	}
 
 	return nil

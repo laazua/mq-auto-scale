@@ -63,10 +63,10 @@ schedule_scaledownconfig_consumer_utilisation_threshold: 0.2
 schedule_scaledownconfig_scale_up_step: 2
 # [缩容] 每次减少2个进程
 schedule_scaledownconfig_scale_down_step: 2
-# 扩容冷却2分钟
+# 扩容冷却时间[分钟]
 schedule_scale_up_cooldown: 2m
-# 缩容冷却5分钟
-schedule_scale_down_cooldown: 5m
+# 缩容冷却时间[分钟]
+schedule_scale_down_cooldown: 2m
 # 调度器队列与配置程序名配对
 schedule_queue_program:
   # mq中的队列名 : 进程名称(配置的进程名,参考.ini配置文件)

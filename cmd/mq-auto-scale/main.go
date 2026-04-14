@@ -88,38 +88,8 @@ func main() {
 	// 6. 等待退出信号
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
-	go printInfo(scheduler)
+
 	<-sigChan
 	// 8. 停止调度器
 	scheduler.Stop()
-}
-
-func printInfo(scheduler *core.Scheduler) {
-	ticker := time.NewTicker(1 * time.Minute)
-	defer ticker.Stop()
-
-	for range ticker.C {
-		stats := scheduler.GetStats()
-		slog.Info("调度器状态",
-			"调度次数", stats.TotalChecks,
-			"扩容次数", stats.TotalScaleUp,
-			"缩容次数", stats.TotalScaleDown,
-			"失败操作", stats.FailedOperations)
-
-		// 打印所有队列状态
-		statuses, err := scheduler.GetAllQueueStatus()
-		if err != nil {
-			slog.Error("获取队列状态失败", "error", err)
-			continue
-		}
-
-		for queue, status := range statuses {
-			slog.Info("队列详细信息",
-				"队列名", queue,
-				"就绪消息数量", status.MessagesReady,
-				"消费者数量", status.Consumers,
-				"当前进程数量", status.CurrentProcesses,
-				"目标进程数量", status.TargetProcesses)
-		}
-	}
 }
