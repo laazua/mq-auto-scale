@@ -1,11 +1,11 @@
 ---
 ##### 日志配置 #####
 # 日志等级: debug,info,warn,error
-log_level: info
+log_level: debug
 # 日志输出格式: json,text
 log_format: text
 # 是否输出日志源文件:
-log_add_source: true
+log_add_source: false
 # 是否输出日志到控制台
 log_enable_console: true
 # 日志文件切割大小(兆[M])
@@ -24,7 +24,7 @@ mq_vhost: mq-auto-scale
 
 ##### Node Monitor 配置 #####
 # 检查间隔
-node_check_interval: 3s
+node_check_interval: 5s
 # 需要连续满足条件的次数
 node_consecutive_checks: 3
 # 每核心最大负载阈值
@@ -41,7 +41,7 @@ supervisor_pass: 123456
 supervisor_timeout: 120s
 supervisor_op_timeout: 120s
 supervisor_min_process: 1
-supervisor_max_process: 4
+supervisor_max_process: 8
 supervisor_config_path: /etc/supervisord.d/
 
 ##### 调度器配置 #####
@@ -63,10 +63,12 @@ schedule_scaledownconfig_consumer_utilisation_threshold: 0.2
 schedule_scaledownconfig_scale_up_step: 2
 # [缩容] 每次减少2个进程
 schedule_scaledownconfig_scale_down_step: 2
-# 扩容冷却2分钟
+# [缩容] 自动调度
+schedule_enable_auto_scale_down: true
+# 扩容冷却时间[分钟,控制扩容时,频繁重启进程]
 schedule_scale_up_cooldown: 2m
-# 缩容冷却5分钟
-schedule_scale_down_cooldown: 5m
+# 缩容冷却时间[分钟,控制缩容时,频繁重启进程]
+schedule_scale_down_cooldown: 2m
 # 调度器队列与配置程序名配对
 schedule_queue_program:
   # mq中的队列名 : 进程名称(配置的进程名,参考.ini配置文件)
