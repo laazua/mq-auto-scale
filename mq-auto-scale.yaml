@@ -63,9 +63,11 @@ schedule_scaledownconfig_consumer_utilisation_threshold: 0.2
 schedule_scaledownconfig_scale_up_step: 2
 # [缩容] 每次减少2个进程
 schedule_scaledownconfig_scale_down_step: 2
-# 扩容冷却时间[分钟]
+# [缩容] 自动调度
+schedule_enable_auto_scale_down: true
+# 扩容冷却时间[分钟,控制扩容时,频繁重启进程]
 schedule_scale_up_cooldown: 2m
-# 缩容冷却时间[分钟]
+# 缩容冷却时间[分钟,控制缩容时,频繁重启进程]
 schedule_scale_down_cooldown: 2m
 # 调度器队列与配置程序名配对
 schedule_queue_program:

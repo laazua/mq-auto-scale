@@ -67,9 +67,9 @@ func main() {
 			MinProcesses:                 comm.Config().Supervisor.MinProcess,
 			MaxProcesses:                 comm.Config().Supervisor.MaxProcess,
 		},
-		EnableAutoScaleDown: true,
-		ScaleUpCooldown:     2 * time.Minute, // 扩容冷却2分钟
-		ScaleDownCooldown:   5 * time.Minute, // 缩容冷却5分钟
+		EnableAutoScaleDown: comm.Config().ScheduleEnableAutoScaleDown,
+		ScaleUpCooldown:     comm.Config().ScheduleScaleUpCooldown,   // 扩容冷却[分钟]
+		ScaleDownCooldown:   comm.Config().ScheduleScaleDownCooldown, // 缩容冷却[分钟]
 	}
 
 	// 4. 创建调度器
