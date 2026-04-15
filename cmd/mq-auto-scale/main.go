@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
 	"mq-auto-scale/pkg/comm"
 	"mq-auto-scale/pkg/core"
@@ -39,11 +38,11 @@ func main() {
 	}
 	// 主机监控配置
 	nodeMonitorConfig := &core.MonitorConfig{
-		MaxCPUUsagePercent:    80.0,
-		MaxMemoryUsagePercent: 70.0,
-		MaxLoadPerCore:        1.0,
-		CheckInterval:         5 * time.Second,
-		ConsecutiveChecks:     3,
+		MaxCPUUsagePercent:    comm.Config().NodeMonitor.MaxCPUUsagePercent,
+		MaxMemoryUsagePercent: comm.Config().NodeMonitor.MaxMemoryUsagePercent,
+		MaxLoadPerCore:        comm.Config().NodeMonitor.MaxLoadPerCore,
+		CheckInterval:         comm.Config().NodeMonitor.CheckInterval,
+		ConsecutiveChecks:     comm.Config().NodeMonitor.ConsecutiveChecks,
 	}
 	// 3. 配置调度器
 	schedulerConfig := &core.SchedulerConfig{

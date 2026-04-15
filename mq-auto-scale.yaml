@@ -24,7 +24,7 @@ mq_vhost: mq-auto-scale
 
 ##### Node Monitor 配置 #####
 # 检查间隔
-node_check_interval: 3s
+node_check_interval: 5s
 # 需要连续满足条件的次数
 node_consecutive_checks: 3
 # 每核心最大负载阈值
