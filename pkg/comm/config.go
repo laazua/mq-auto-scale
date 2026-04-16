@@ -63,13 +63,9 @@ type config struct {
 		Pass       string        `yaml:"supervisor_pass" default:"123456"`
 		TimeOut    time.Duration `yaml:"supervisor_timeout" default:"120s"`
 		OpTimeOut  time.Duration `yaml:"supervisor_op_timeout" default:"120"`
-		ConfigPath string        `yaml:"supervisor_config_path" default:"
-		
-		
-		
-		"`
-		MinProcess int `yaml:"supervisor_min_process" default:"1"`
-		MaxProcess int `yaml:"supervisor_max_process" default:"8"`
+		ConfigPath string        `yaml:"supervisor_config_path" default:"/etc/supervisord.d/"`
+		MinProcess int           `yaml:"supervisor_min_process" default:"1"`
+		MaxProcess int           `yaml:"supervisor_max_process" default:"8"`
 	} `yaml:",inline"`
 }
 

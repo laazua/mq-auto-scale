@@ -2,12 +2,14 @@
 ##### 日志配置 #####
 # 日志等级: debug,info,warn,error
 log_level: debug
+# 日志文件
+log_file: logs/app.log
 # 日志输出格式: json,text
 log_format: text
 # 是否输出日志源文件:
 log_add_source: false
 # 是否输出日志到控制台
-log_enable_console: true
+log_enable_console: false
 # 日志文件切割大小(兆[M])
 log_max_size: 10
 # 日志文件保存个数
