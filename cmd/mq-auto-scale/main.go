@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 
 	"mq-auto-scale/pkg/comm"
@@ -11,6 +13,15 @@ import (
 )
 
 func main() {
+	// 获取临时目录中的锁文件路径
+	lockFile := filepath.Join(os.TempDir(), getProgramName()+"-running.lock")
+	lock := NewFileLock(lockFile)
+
+	if err := lock.Lock(); err != nil {
+		fmt.Println("程序已经在运行中！")
+		os.Exit(1)
+	}
+	defer lock.Unlock()
 	// 加载配置
 	if err := comm.LoadConfig(); err != nil {
 		panic(err)
