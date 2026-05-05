@@ -2,3 +2,4 @@ lib/
 __pycache__/
 mqAutoScale
 logs/
+mq-auto-scale.yaml
