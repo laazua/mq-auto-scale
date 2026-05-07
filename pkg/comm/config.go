@@ -17,7 +17,7 @@ var (
 type config struct {
 	// 全局配置
 	LogLevel                                            string            `yaml:"log_level" default:"info"`
-	LogFile                                             string            `yaml:"log_file" defalt:"logs/app.log"`
+	LogFile                                             string            `yaml:"log_file" default:"logs/app.log"`
 	LogFormat                                           string            `yaml:"log_format" default:"text"`
 	LogAddSource                                        bool              `yaml:"log_add_source" default:"false"`
 	LogEnableConsole                                    bool              `yaml:"log_enable_console" default:"false"`
